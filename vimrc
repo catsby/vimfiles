@@ -16,15 +16,19 @@ filetype plugin indent on
 runtime macros/matchit.vim  " enables % to cycle through `if/else/endif`
 
 syntax enable
-if has('gui_running')
-  set background=light
-else
-  set background=dark
-endif
-color railscasts
+"" if has('gui_running')
+""   set background=light
+"" else
+""   set background=dark
+"" endif
+" colorscheme Tomorrow-Night-Eighties
+
+syntax enable
+set background=dark
+colorscheme solarized
+
 set synmaxcol=800           " don't try to highlight long lines
 
-set nonumber    " line numbers aren't needed
 set ruler       " show the cursor position all the time
 set cursorline  " highlight the line of the cursor
 set showcmd     " show partial commands below the status line
@@ -32,6 +36,9 @@ set shell=bash  " avoids munging PATH under zsh
 let g:is_bash=1 " default shell syntax
 set history=200 " remember more Ex commands
 set scrolloff=3 " have some context around the current line always on screen
+
+set nolazyredraw           " turn off lazy redraw
+set number                 " line numbers
 
 " Allow backgrounding buffers without writing them, and remember marks/undo
 " for backgrounded buffers
@@ -50,6 +57,7 @@ set backupskip=/tmp/*,/private/tmp/*"
 set nowrap                        " don't wrap lines
 set tabstop=2                     " a tab is two spaces
 set shiftwidth=2                  " an autoindent (with <<) is two spaces
+set smartindent                   " be smart about it
 set expandtab                     " use spaces, not tabs
 set list                          " Show invisible characters
 set backspace=indent,eol,start    " backspace through everything in insert mode
@@ -135,6 +143,8 @@ map Q gq
 :nnoremap <Space> za
 
 let mapleader=","
+" Show leader keystrokes in the bottom right
+set showcmd
 
 " yank to system clipboard
 map <leader>y "*y
@@ -151,6 +161,8 @@ map <leader>gl :CommandT lib<cr>
 map <leader>gt :CommandTTag<cr>
 map <leader>f :CommandT<cr>
 map <leader>F :CommandT %%<cr>
+
+map <leader>. :e .<cr>
 
 let g:CommandTMatchWindowAtTop=1
 let g:CommandTMaxHeight=10
@@ -205,21 +217,11 @@ endfunction
 set splitright
 set splitbelow
 
-" disable cursor keys in normal mode
-map <Left>  :echo "no!"<cr>
-map <Right> :echo "no!"<cr>
-map <Up>    :echo "no!"<cr>
-map <Down>  :echo "no!"<cr>
-
 if has("statusline") && !&cp
-  set laststatus=2                   " always show the status bar
-  set statusline=%<%1*\ %f\ %*       " filename
-  set statusline+=%2*%m%r%*          " modified, readonly
-  set statusline+=\ %3*%y%*          " filetype
-  set statusline+=\ %4*%{fugitive#head()}%0*
-  set statusline+=%=                 " left-right separation point
-  set statusline+=\ %5*%l%*/%L[%p%%] " current line/total lines
-  set statusline+=\ %5*%v%*[0x%B]    " current column [hex char]
+  set statusline=%<%f\ 
+  set statusline+=%w%h%m%r 
+  set statusline+=\ [%{getcwd()}]
+  set statusline+=%=%-14.(Line:\ %l\ of\ %L\ [%p%%]\ -\ Col:\ %c%V%)
 endif
 
 hi StatusLine term=inverse,bold cterm=NONE ctermbg=24 ctermfg=189
@@ -229,3 +231,25 @@ hi User2 term=inverse,bold cterm=NONE ctermbg=29 ctermfg=16
 hi User3 term=inverse,bold cterm=NONE ctermbg=24
 hi User4 term=inverse,bold cterm=NONE ctermbg=24 ctermfg=221
 hi User5 term=inverse,bold cterm=NONE ctermbg=24 ctermfg=209
+
+
+" customizations
+set showmatch              " brackets/braces that is
+set mat=5                  " duration to show matching brace (1/10 sec)
+set laststatus=2           " always show the status line
+
+
+autocmd BufWritePre *.rb,go :%s/\s\+$//e
+
+"spell check when writing commit logs
+autocmd filetype svn,*commit* setlocal spell
+
+" set up gofmt thing
+
+let g:go_fmt_command = "goimports"
+let g:neocomplete#enable_at_startup = 1
+
+" don't hit escape key
+:imap jk <Esc>
+" Press i to enter insert mode, and ii to exit.
+:imap ii <Esc>
