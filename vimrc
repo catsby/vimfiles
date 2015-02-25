@@ -25,7 +25,7 @@ syntax enable
 
 syntax enable
 set background=dark
-colorscheme solarized
+colorscheme codeschool
 
 set synmaxcol=800           " don't try to highlight long lines
 

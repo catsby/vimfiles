@@ -61,3 +61,4 @@ let g:tagbar_type_go = {
 :set textwidth=80
 :set colorcolumn=+1
 :hi ColorColumn guibg=#2d2d2d ctermbg=246
+:highlight clear SignColumn 
