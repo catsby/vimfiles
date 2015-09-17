@@ -62,3 +62,11 @@ let g:tagbar_type_go = {
 :set colorcolumn=+1
 :hi ColorColumn guibg=#2d2d2d ctermbg=246
 :highlight clear SignColumn 
+
+
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+au FileType go nmap <Leader>i <Plug>(go-info)
+
+:nnoremap <silent> <leader>b :CommandTMRU<CR>

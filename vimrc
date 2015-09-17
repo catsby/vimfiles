@@ -253,3 +253,6 @@ let g:neocomplete#enable_at_startup = 1
 :imap jk <Esc>
 " Press i to enter insert mode, and ii to exit.
 :imap ii <Esc>
+
+
+let g:go_autodetect_gopath = 0
