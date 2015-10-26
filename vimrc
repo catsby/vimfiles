@@ -25,7 +25,7 @@ syntax enable
 
 syntax enable
 set background=dark
-colorscheme codeschool
+colorscheme badwolf
 
 set synmaxcol=800           " don't try to highlight long lines
 
@@ -217,15 +217,15 @@ endfunction
 set splitright
 set splitbelow
 
-if has("statusline") && !&cp
-  set statusline=%<%f\ 
-  set statusline+=%w%h%m%r 
-  set statusline+=\ [%{getcwd()}]
-  set statusline+=%=%-14.(Line:\ %l\ of\ %L\ [%p%%]\ -\ Col:\ %c%V%)
-endif
+" if has("statusline") && !&cp
+"   set statusline=%<%f\ 
+"   set statusline+=%w%h%m%r 
+"   set statusline+=\ [%{getcwd()}]
+"   set statusline+=%=%-14.(Line:\ %l\ of\ %L\ [%p%%]\ -\ Col:\ %c%V%)
+" endif
 
-hi StatusLine term=inverse,bold cterm=NONE ctermbg=24 ctermfg=189
-hi StatusLineNC term=inverse,bold cterm=NONE ctermbg=24 ctermfg=153
+" hi StatusLine term=inverse,bold cterm=NONE ctermbg=24 ctermfg=189
+" hi StatusLineNC term=inverse,bold cterm=NONE ctermbg=24 ctermfg=153
 hi User1 term=inverse,bold cterm=NONE ctermbg=29 ctermfg=159
 hi User2 term=inverse,bold cterm=NONE ctermbg=29 ctermfg=16
 hi User3 term=inverse,bold cterm=NONE ctermbg=24
