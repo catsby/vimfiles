@@ -25,17 +25,37 @@ syntax enable
 
 syntax enable
 set background=dark
-colorscheme badwolf
+"" colorscheme badwolf
+colorscheme dracula
 
 set synmaxcol=800           " don't try to highlight long lines
 
 set ruler       " show the cursor position all the time
 set cursorline  " highlight the line of the cursor
 set showcmd     " show partial commands below the status line
-set shell=bash  " avoids munging PATH under zsh
+set shell=/bin/bash  " avoids munging PATH under zsh
 let g:is_bash=1 " default shell syntax
 set history=200 " remember more Ex commands
 set scrolloff=3 " have some context around the current line always on screen
+
+"" -------
+
+" Visual Mode Orange Background, Black Text
+hi Visual          guifg=#000000 guibg=#FD971F
+
+" Default Colors for CursorLine
+highlight CursorLine guibg=#3E3D32
+highlight Cursor guibg=#A6E22E;
+
+" Change Color when entering Insert Mode
+autocmd InsertEnter * highlight  CursorLine guibg=#323D3E
+autocmd InsertEnter * highlight  Cursor guibg=#00AAFF;
+
+" Revert Color to default when leaving Insert Mode
+autocmd InsertLeave * highlight  CursorLine guibg=#3E3D32
+autocmd InsertLeave * highlight  Cursor guibg=#A6E22E;
+
+"" -------
 
 set nolazyredraw           " turn off lazy redraw
 set number                 " line numbers
@@ -59,7 +79,7 @@ set tabstop=2                     " a tab is two spaces
 set shiftwidth=2                  " an autoindent (with <<) is two spaces
 set smartindent                   " be smart about it
 set expandtab                     " use spaces, not tabs
-set list                          " Show invisible characters
+set nolist                          " don't Show invisible characters
 set backspace=indent,eol,start    " backspace through everything in insert mode
 " Joining lines
 if v:version > 703 || v:version == 703 && has("patch541")
@@ -68,7 +88,7 @@ endif
 set nojoinspaces                  " Use only 1 space after "." when joining lines, not 2
 " Indicator chars
 set listchars=tab:▸\ ,trail:•,extends:❯,precedes:❮
-set showbreak=↪\ 
+"set showbreak=↪\ 
 
 "" Searching
 set hlsearch                      " highlight matches
@@ -167,6 +187,7 @@ map <leader>. :e .<cr>
 let g:CommandTMatchWindowAtTop=1
 let g:CommandTMaxHeight=10
 let g:CommandTMinHeight=2
+let g:CommandTMatchWindowReverse=0
 
 let g:turbux_command_test_unit = 'ruby -Ilib:test'
 " let g:turbux_command_cucumber = 'cucumber -f progress'
@@ -256,3 +277,8 @@ let g:neocomplete#enable_at_startup = 1
 
 
 let g:go_autodetect_gopath = 0
+
+" vim-go alternate things
+map <leader>gae :<C-u>call go#alternate#Switch(0, "edit")<CR>
+map <leader>gas :<C-u>call go#alternate#Switch(0, "split")<CR>
+map <leader>gav :<C-u>call go#alternate#Switch(0, "vsplit")<CR>
