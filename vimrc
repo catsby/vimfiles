@@ -121,7 +121,7 @@ augroup vimrcEx
   au InsertLeave * :set listchars+=trail:•
 
   " Some file types use real tabs
-  au FileType {make,gitconfig} set noexpandtab
+  au FileType {make,gitconfig} setl noexpandtab
 
   " Make sure all markdown files have the correct filetype set and setup wrapping
   au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn,txt} setf markdown | call s:setupWrapping()
@@ -130,7 +130,7 @@ augroup vimrcEx
   au BufNewFile,BufRead *.json setf javascript
 
   " https://github.com/sstephenson/bats
-  au BufNewFile,BufRead *.bats setf sh
+  au BufNewFile,BufRead *.bats setl filetype=sh
 
   au BufNewFile,BufRead *.rl setfiletype ragel
 
@@ -203,11 +203,11 @@ function! InsertTabWrapper()
   if !col || getline('.')[col - 1] !~ '\k'
     return "\<tab>"
   else
-    return "\<c-p>"
+    return "\<c-n>"
   endif
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-inoremap <s-tab> <c-n>
+inoremap <s-tab> <c-p>
 
 " ignore Rubinius, Sass cache files
 set wildignore+=tmp/**,*.rbc,.rbx,*.scssc,*.sassc
@@ -238,12 +238,12 @@ endfunction
 set splitright
 set splitbelow
 
-" if has("statusline") && !&cp
-"   set statusline=%<%f\ 
-"   set statusline+=%w%h%m%r 
-"   set statusline+=\ [%{getcwd()}]
-"   set statusline+=%=%-14.(Line:\ %l\ of\ %L\ [%p%%]\ -\ Col:\ %c%V%)
-" endif
+if has("statusline") && !&cp
+  set statusline=%<%f\ 
+  set statusline+=%w%h%m%r 
+  set statusline+=\ [%{getcwd()}]
+  set statusline+=%=%-14.(Line:\ %l\ of\ %L\ [%p%%]\ -\ Col:\ %c%V%)
+endif
 
 " hi StatusLine term=inverse,bold cterm=NONE ctermbg=24 ctermfg=189
 " hi StatusLineNC term=inverse,bold cterm=NONE ctermbg=24 ctermfg=153
@@ -282,3 +282,20 @@ let g:go_autodetect_gopath = 0
 map <leader>gae :<C-u>call go#alternate#Switch(0, "edit")<CR>
 map <leader>gas :<C-u>call go#alternate#Switch(0, "split")<CR>
 map <leader>gav :<C-u>call go#alternate#Switch(0, "vsplit")<CR>
+
+" disable cursor keys in normal mode
+map <Left>  :echo "no!"<cr>
+map <Right> :echo "no!"<cr>
+map <Up>    :echo "no!"<cr>
+map <Down>  :echo "no!"<cr>
+
+" if has("statusline") && !&cp
+"   set laststatus=2                   " always show the status bar
+"   set statusline=%<%1*\ %f\ %*       " filename
+"   set statusline+=%2*%m%r%*          " modified, readonly
+"   set statusline+=\ %3*%y%*          " filetype
+"   set statusline+=\ %4*%{fugitive#head()}%0*
+"   set statusline+=%=                 " left-right separation point
+"   set statusline+=\ %5*%l%*/%L[%p%%] " current line/total lines
+"   set statusline+=\ %5*%v%*[0x%B]    " current column [hex char]
+" endif
