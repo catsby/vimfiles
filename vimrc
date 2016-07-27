@@ -284,10 +284,10 @@ map <leader>gas :<C-u>call go#alternate#Switch(0, "split")<CR>
 map <leader>gav :<C-u>call go#alternate#Switch(0, "vsplit")<CR>
 
 " disable cursor keys in normal mode
-map <Left>  :echo "no!"<cr>
-map <Right> :echo "no!"<cr>
-map <Up>    :echo "no!"<cr>
-map <Down>  :echo "no!"<cr>
+" map <Left>  :echo "no!"<cr>
+" map <Right> :echo "no!"<cr>
+" map <Up>    :echo "no!"<cr>
+" map <Down>  :echo "no!"<cr>
 
 " if has("statusline") && !&cp
 "   set laststatus=2                   " always show the status bar
