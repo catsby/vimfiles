@@ -45,7 +45,7 @@ hi Visual          guifg=#000000 guibg=#FD971F
 
 " Default Colors for CursorLine
 highlight CursorLine guibg=#3E3D32
-highlight Cursor guibg=#A6E22E;
+" highlight Cursor guibg=#A6E22E;
 
 " Change Color when entering Insert Mode
 autocmd InsertEnter * highlight  CursorLine guibg=#323D3E
@@ -299,3 +299,6 @@ map <leader>gav :<C-u>call go#alternate#Switch(0, "vsplit")<CR>
 "   set statusline+=\ %5*%l%*/%L[%p%%] " current line/total lines
 "   set statusline+=\ %5*%v%*[0x%B]    " current column [hex char]
 " endif
+
+
+hi x255_Grey93 ctermfg=255 guifg=#eeeeee "rgb=238,238,238

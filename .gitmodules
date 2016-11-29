@@ -73,3 +73,15 @@
 [submodule "bundle/argumentative"]
 	path = bundle/argumentative
 	url = https://github.com/PeterRincker/vim-argumentative
+[submodule "bundle/vim-gitgutter"]
+	path = bundle/vim-gitgutter
+	url = git://github.com/airblade/vim-gitgutter.git
+[submodule "bundle/vim-go"]
+	path = bundle/vim-go
+	url = https://github.com/fatih/vim-go
+[submodule "bundle/vim-hclfmt"]
+	path = bundle/vim-hclfmt
+	url = https://github.com/fatih/vim-hclfmt.git
+[submodule "bundle/vim-terraform"]
+	path = bundle/vim-terraform
+	url = https://github.com/bkad/vim-terraform.git
