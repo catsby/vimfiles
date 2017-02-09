@@ -289,16 +289,23 @@ map <leader>gav :<C-u>call go#alternate#Switch(0, "vsplit")<CR>
 " map <Up>    :echo "no!"<cr>
 " map <Down>  :echo "no!"<cr>
 
-" if has("statusline") && !&cp
-"   set laststatus=2                   " always show the status bar
-"   set statusline=%<%1*\ %f\ %*       " filename
-"   set statusline+=%2*%m%r%*          " modified, readonly
-"   set statusline+=\ %3*%y%*          " filetype
-"   set statusline+=\ %4*%{fugitive#head()}%0*
-"   set statusline+=%=                 " left-right separation point
-"   set statusline+=\ %5*%l%*/%L[%p%%] " current line/total lines
-"   set statusline+=\ %5*%v%*[0x%B]    " current column [hex char]
-" endif
-
-
 hi x255_Grey93 ctermfg=255 guifg=#eeeeee "rgb=238,238,238
+
+" Things from gvim
+set guifont=Menlo\ Regular:h14
+set linespace=2
+set antialias
+
+:set textwidth=80
+:set colorcolumn=+1
+:hi ColorColumn guibg=#2d2d2d ctermbg=236
+:highlight clear SignColumn 
+
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+au FileType go nmap <Leader>i <Plug>(go-info)
+
+
+" Write all buffers before navigating from Vim to tmux pane
+let g:tmux_navigator_save_on_switch = 1
