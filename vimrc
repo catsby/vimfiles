@@ -161,6 +161,10 @@ map Q gq
 
 " toggle the current fold
 :nnoremap <Space> za
+set foldmethod=indent   
+set foldnestmax=10
+set nofoldenable
+set foldlevel=2
 
 let mapleader=","
 " Show leader keystrokes in the bottom right
@@ -309,3 +313,4 @@ au FileType go nmap <Leader>i <Plug>(go-info)
 
 " Write all buffers before navigating from Vim to tmux pane
 let g:tmux_navigator_save_on_switch = 1
+
